@@ -1,7 +1,7 @@
 package simple.engine.engine.modules;
 
-import simple.engine.engine.GameConfig;
 import org.javatuples.Pair;
+import simple.engine.engine.GameConfig;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

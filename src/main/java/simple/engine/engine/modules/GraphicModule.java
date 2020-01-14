@@ -1,8 +1,8 @@
 package simple.engine.engine.modules;
 
+import org.javatuples.Pair;
 import simple.engine.engine.Engine;
 import simple.engine.engine.GameConfig;
-import org.javatuples.Pair;
 
 import javax.swing.*;
 import java.awt.*;

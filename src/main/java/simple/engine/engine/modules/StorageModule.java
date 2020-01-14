@@ -1,6 +1,7 @@
 package simple.engine.engine.modules;
 
 import simple.engine.engine.GameConfig;
+import simple.engine.engine.ImageOptimizer;
 import simple.engine.engine.loaders.ImageLoader;
 import simple.engine.engine.loaders.SoundLoader;
 
@@ -16,15 +17,15 @@ public class StorageModule extends Module {
 
     public StorageModule(GameConfig config) {
         super(config);
-        //imageLoader.preload(imagePrefix);
-        //soundLoader.preload(soundPrefix);
+        imageLoader.preload(imagePrefix);
+        soundLoader.preload(soundPrefix);
     }
 
-    public BufferedImage loadImage(String file) {
-        return imageLoader.get(imagePrefix.concat(file));
+    public BufferedImage getImage(String name) {
+        return ImageOptimizer.optimize(imageLoader.get(name));
     }
 
-    public Clip loadSound(String file) {
-        return soundLoader.get(soundPrefix.concat(file));
+    public Clip getClip(String name) {
+        return soundLoader.get(name);
     }
 }

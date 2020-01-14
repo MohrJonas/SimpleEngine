@@ -9,6 +9,7 @@ import java.util.HashMap;
 public class WidgetPack {
 
     private final HashMap<Integer, Widget> widgets = new HashMap<>();
+    public boolean debug;
 
     public WidgetPack(Integer[] ids, Widget[] widgets) {
         if (ids.length != widgets.length)
@@ -21,8 +22,6 @@ public class WidgetPack {
             throw new IllegalArgumentException("Widget with ID ".concat(String.valueOf(id)).concat(" doesn't exist"));
         return widgets.get(id);
     }
-
-    public boolean debug;
 
     public void paint(Graphics2D g) {
         widgets.values().forEach(widget -> widget.paint(g));
