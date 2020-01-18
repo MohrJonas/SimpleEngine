@@ -39,7 +39,7 @@ public class GraphicModule extends Module {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         Engine.timingModule.scheduleRepeatedly(() -> {
-            frameBuffer.createGraphics().clearRect(0, 0, config.getWidth(), config.getHeight());
+            frameBuffer.createGraphics().clearRect(0, 0, frameBuffer.getWidth(), frame.getHeight());
             frameListeners.forEach(frameListener -> frameListener.getValue0().onNextFrame(frameBuffer.createGraphics()));
             Engine.guiModule.paint(frameBuffer.createGraphics());
             frame.repaint();

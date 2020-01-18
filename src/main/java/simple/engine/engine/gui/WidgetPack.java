@@ -4,6 +4,7 @@ import simple.engine.engine.gui.components.Button;
 import simple.engine.engine.gui.components.Widget;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class WidgetPack {
@@ -11,10 +12,8 @@ public class WidgetPack {
     private final HashMap<Integer, Widget> widgets = new HashMap<>();
     public boolean debug;
 
-    public WidgetPack(Integer[] ids, Widget[] widgets) {
-        if (ids.length != widgets.length)
-            throw new IllegalArgumentException("Amount of IDs and Widgets must be the same");
-        for (int i = 0; i < ids.length; i++) this.widgets.put(ids[i], widgets[i]);
+    public WidgetPack(Widget... widgets) {
+        for (int i = 0; i < widgets.length; i++) this.widgets.put(i, widgets[i]);
     }
 
     public Widget get(int id) {

@@ -18,16 +18,12 @@ public abstract class Widget {
     public void addAnimation(MOVEMENT movement, int distance, int stepSize) {
         int steps = distance / stepSize;
         switch (movement) {
-            case HORIZONTAL -> {
-                Engine.timingModule.scheduleMultiple(() -> {
-                    rectangle.x += stepSize;
-                }, 0, 50, steps);
-            }
-            case VERTICAL -> {
-                Engine.timingModule.scheduleMultiple(() -> {
-                    rectangle.y += stepSize;
-                }, 0, 50, steps);
-            }
+            case HORIZONTAL:
+                Engine.timingModule.scheduleMultiple(() -> rectangle.x += stepSize, 0, 50, steps);
+                break;
+            case VERTICAL:
+                Engine.timingModule.scheduleMultiple(() -> rectangle.y += stepSize, 0, 50, steps);
+                break;
         }
     }
 

@@ -3,23 +3,26 @@ package simple.engine.engine.loaders;
 import org.apache.commons.io.FilenameUtils;
 
 import javax.sound.sampled.*;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.stream.Stream;
 
 public class SoundLoader extends Loader<Clip> {
 
     private HashMap<String, Clip> clips = new HashMap<>();
 
     @Override
-    public void preload(String folder) {
-        getResourceFiles(folder).stream().filter(s -> !FilenameUtils.getExtension(s).isEmpty()).forEach(s -> {
+    public void preload(Stream<Path> path) {
+        path.filter(p -> !FilenameUtils.getExtension(p.getFileName().toString()).isEmpty()).forEach(p -> {
             try {
                 Clip clip;
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(SoundLoader.class.getResource(folder.concat(s)));
+                AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(String.valueOf(p)));
                 clip = AudioSystem.getClip();
                 clip.open(audioIn);
-                clips.put(s, clip);
-            } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
+                clips.put(p.toString(), clip);
+            } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
                 e.printStackTrace();
             }
         });
