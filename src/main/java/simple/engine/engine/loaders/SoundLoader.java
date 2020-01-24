@@ -1,9 +1,6 @@
 package simple.engine.engine.loaders;
 
-import org.apache.commons.io.FilenameUtils;
-
 import javax.sound.sampled.*;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -15,14 +12,15 @@ public class SoundLoader extends Loader<Clip> {
 
     @Override
     public void preload(Stream<Path> path) {
-        path.filter(p -> !FilenameUtils.getExtension(p.getFileName().toString()).isEmpty()).forEach(p -> {
+        path.forEach(p -> {
             try {
                 Clip clip;
-                AudioInputStream audioIn = AudioSystem.getAudioInputStream(new File(String.valueOf(p)));
+                AudioInputStream audioIn = null;
+                audioIn = AudioSystem.getAudioInputStream(p.toFile());
                 clip = AudioSystem.getClip();
                 clip.open(audioIn);
                 clips.put(p.toString(), clip);
-            } catch (LineUnavailableException | IOException | UnsupportedAudioFileException e) {
+            } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
                 e.printStackTrace();
             }
         });

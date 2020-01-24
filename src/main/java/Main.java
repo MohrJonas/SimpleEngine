@@ -1,20 +1,26 @@
 import com.google.common.io.Resources;
 import com.thedeanda.lorem.LoremIpsum;
+import org.apache.commons.io.FilenameUtils;
 import simple.engine.engine.Engine;
 import simple.engine.engine.GameConfig;
 import simple.engine.engine.gui.WidgetPack;
+import simple.engine.engine.gui.components.ImageFrame;
 import simple.engine.engine.gui.components.Label;
 import simple.engine.engine.gui.components.Rectangle;
 import simple.engine.engine.gui.components.Widget;
 import simple.engine.engine.modules.FrameListener;
 import simple.engine.engine.modules.GraphicModule;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main {
 
-    public static void main(String[] args) {
-        System.out.println(Resources.getResource("images/Sample.png"));
+    public static void main(String[] args) throws IOException {
         Engine.initialize(new GameConfig() {{
             setFps(60);
             setHeight(600);
@@ -22,7 +28,7 @@ public class Main {
             setDefaultVolume(1);
             setFullscreen(true);
         }});
-        WidgetPack wp = new WidgetPack(new Rectangle(0, 0, 200, 200, Color.CYAN), new Label(0, 300, "Hello World"));
+        WidgetPack wp = new WidgetPack(new Rectangle(0, 0, 200, 200, Color.CYAN), new Label(0, 300, "Hello World"), new ImageFrame(0, 0, ImageIO.read(Resources.getResource("sample.png")), Color.CYAN, 5));
         Engine.graphicModule.addFrameListener(new FrameListener() {
             @Override
             public void onNextFrame(Graphics2D g) {

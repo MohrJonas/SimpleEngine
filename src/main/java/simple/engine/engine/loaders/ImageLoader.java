@@ -1,10 +1,9 @@
 package simple.engine.engine.loaders;
 
-import org.apache.commons.io.FilenameUtils;
+import simple.engine.engine.ImageOptimizer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -16,9 +15,9 @@ public class ImageLoader extends Loader<BufferedImage> {
 
     @Override
     public void preload(Stream<Path> path) {
-        path.filter(p -> !FilenameUtils.getExtension(p.getFileName().toString()).isEmpty()).forEach(p -> {
+        path.forEach(p -> {
             try {
-                images.put(p.toString(), ImageIO.read(new File(String.valueOf(p))));
+                images.put(p.getFileName().toString(), ImageOptimizer.optimize(ImageIO.read(p.toFile())));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -29,6 +28,7 @@ public class ImageLoader extends Loader<BufferedImage> {
     @Override
     public BufferedImage get(String name) {
         if (images.containsKey(name)) return images.get(name);
+        if (images.containsKey(name.replace(".", ""))) return images.get(name.replace(".", ""));
         throw new NullPointerException(name.concat(" isn't an image"));
     }
 }

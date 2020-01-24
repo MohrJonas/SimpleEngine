@@ -1,5 +1,6 @@
 package simple.engine.engine.modules;
 
+import com.google.common.base.Stopwatch;
 import org.javatuples.Pair;
 import simple.engine.engine.Engine;
 import simple.engine.engine.GameConfig;
@@ -9,24 +10,19 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.concurrent.TimeUnit;
 
 public class GraphicModule extends Module {
 
-    @SuppressWarnings("unused")
     public static final int FIRST_LAYER = Integer.MIN_VALUE;
-    @SuppressWarnings("unused")
     public static final int LAST_LAYER = Integer.MAX_VALUE;
+    private final Stopwatch stopwatch = Stopwatch.createUnstarted();
     private final LinkedList<Pair<FrameListener, Integer>> frameListeners = new LinkedList<>();
     private final BufferedImage frameBuffer;
 
     public GraphicModule(GameConfig config) {
         super(config);
-        JFrame frame = new JFrame() {
-            @Override
-            public void paint(Graphics g) {
-                g.drawImage(frameBuffer, 0, 0, null);
-            }
-        };
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
         if (config.isFullscreen()) {
@@ -39,10 +35,13 @@ public class GraphicModule extends Module {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         Engine.timingModule.scheduleRepeatedly(() -> {
+            stopwatch.start();
             frameBuffer.createGraphics().clearRect(0, 0, frameBuffer.getWidth(), frame.getHeight());
             frameListeners.forEach(frameListener -> frameListener.getValue0().onNextFrame(frameBuffer.createGraphics()));
             Engine.guiModule.paint(frameBuffer.createGraphics());
-            frame.repaint();
+            frame.getGraphics().drawImage(frameBuffer, 0, 0, null);
+            System.out.println(1000 / stopwatch.elapsed(TimeUnit.MILLISECONDS) + " fps");
+            stopwatch.reset();
         }, 0, 17);
         frame.addKeyListener(Engine.keyModule);
         frame.addMouseListener(Engine.mouseModule);

@@ -1,6 +1,5 @@
 package simple.engine.engine.loaders;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.util.stream.Stream;
 
