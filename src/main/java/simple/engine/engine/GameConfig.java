@@ -2,10 +2,11 @@ package simple.engine.engine;
 
 public class GameConfig {
 
-    private int fps;
-    private int width, height;
-    private boolean fullscreen;
-    private int defaultVolume;
+    private int fps = 60;
+    private int width = 512;
+    private int height = 512;
+    private boolean fullscreen = false;
+    private int defaultVolume = 1;
 
     public int getFps() {
         return fps;

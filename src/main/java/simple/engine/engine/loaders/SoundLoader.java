@@ -1,5 +1,7 @@
 package simple.engine.engine.loaders;
 
+import simple.engine.engine.util.ColorOut;
+
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -8,14 +10,14 @@ import java.util.stream.Stream;
 
 public class SoundLoader extends Loader<Clip> {
 
-    private HashMap<String, Clip> clips = new HashMap<>();
+    private final HashMap<String, Clip> clips = new HashMap<>();
 
     @Override
     public void preload(Stream<Path> path) {
         path.forEach(p -> {
             try {
                 Clip clip;
-                AudioInputStream audioIn = null;
+                AudioInputStream audioIn;
                 audioIn = AudioSystem.getAudioInputStream(p.toFile());
                 clip = AudioSystem.getClip();
                 clip.open(audioIn);
@@ -24,7 +26,7 @@ public class SoundLoader extends Loader<Clip> {
                 e.printStackTrace();
             }
         });
-        System.out.println(clips);
+        ColorOut.print(System.out, String.format("Loaded %d sounds from files.", clips.values().size()), ColorOut.GREEN);
     }
 
     @Override

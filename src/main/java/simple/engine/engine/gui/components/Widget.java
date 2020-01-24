@@ -7,7 +7,7 @@ import java.awt.*;
 
 public abstract class Widget {
 
-    protected Rectangle rectangle;
+    protected final Rectangle rectangle;
 
     public Widget(int x, int y, int width, int height) {
         rectangle = new Rectangle(x, y, width, height);

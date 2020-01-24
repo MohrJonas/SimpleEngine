@@ -37,7 +37,7 @@
     </build>
     <distributionManagement>
         <repository>
-            <id>JonasMohr.xyz</id>
+            <id>jonasmohr.xyz</id>
             <url>ftp://jonasmohr.xyz</url>
         </repository>
     </distributionManagement>

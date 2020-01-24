@@ -10,4 +10,7 @@ public class Module {
         this.config = config;
     }
 
+    public void dispose() {
+    }
+
 }

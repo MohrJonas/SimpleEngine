@@ -21,14 +21,14 @@ public class StorageModule extends Module {
     private final ImageLoader imageLoader = new ImageLoader();
     private final SoundLoader soundLoader = new SoundLoader();
 
-    public StorageModule(GameConfig config) {
+    public StorageModule(GameConfig config, Class<?> clazz) {
         super(config);
         try {
             String[] imageExtensions = new String[]{"png", "jpg", "jpeg", "bmp"};
             String[] soundExtensions = new String[]{"wav"};
-            imageLoader.preload(Files.walk(new File(StorageModule.class.getProtectionDomain().getCodeSource().getLocation().getPath()).toPath()).filter(path ->
+            imageLoader.preload(Files.walk(new File(clazz.getProtectionDomain().getCodeSource().getLocation().getPath()).toPath()).filter(path ->
                     ArrayUtils.contains(FilenameUtils.getExtension(path.getFileName().toString()), imageExtensions)));
-            soundLoader.preload(Files.walk(new File(StorageModule.class.getProtectionDomain().getCodeSource().getLocation().getPath()).toPath()).filter(path ->
+            soundLoader.preload(Files.walk(new File(clazz.getProtectionDomain().getCodeSource().getLocation().getPath()).toPath()).filter(path ->
                     ArrayUtils.contains(FilenameUtils.getExtension(path.getFileName().toString()), soundExtensions)));
         } catch (IOException e) {
             System.err.println(e.getCause().getMessage());

@@ -1,6 +1,8 @@
 package simple.engine.engine.loaders;
 
 import simple.engine.engine.ImageOptimizer;
+import simple.engine.engine.util.ColorOut;
+import simple.engine.engine.util.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -22,7 +24,7 @@ public class ImageLoader extends Loader<BufferedImage> {
                 e.printStackTrace();
             }
         });
-        System.out.println(images);
+        Logger.log(ColorOut.asString(String.format("Loaded %d images from files.", images.values().size()), ColorOut.GREEN), "resources");
     }
 
     @Override

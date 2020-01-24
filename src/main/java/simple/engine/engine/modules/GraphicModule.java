@@ -4,6 +4,7 @@ import com.google.common.base.Stopwatch;
 import org.javatuples.Pair;
 import simple.engine.engine.Engine;
 import simple.engine.engine.GameConfig;
+import simple.engine.engine.util.Logger;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +15,9 @@ import java.util.concurrent.TimeUnit;
 
 public class GraphicModule extends Module {
 
+    @SuppressWarnings("unused")
     public static final int FIRST_LAYER = Integer.MIN_VALUE;
+    @SuppressWarnings("unused")
     public static final int LAST_LAYER = Integer.MAX_VALUE;
     private final Stopwatch stopwatch = Stopwatch.createUnstarted();
     private final LinkedList<Pair<FrameListener, Integer>> frameListeners = new LinkedList<>();
@@ -33,6 +36,9 @@ public class GraphicModule extends Module {
             frameBuffer = new BufferedImage(config.getWidth(), config.getHeight(), BufferedImage.TYPE_INT_ARGB);
         }
         frame.setLocationRelativeTo(null);
+        frame.addKeyListener(Engine.keyModule);
+        frame.addMouseListener(Engine.mouseModule);
+        frame.addMouseMotionListener(Engine.mouseModule);
         frame.setVisible(true);
         Engine.timingModule.scheduleRepeatedly(() -> {
             stopwatch.start();
@@ -40,12 +46,9 @@ public class GraphicModule extends Module {
             frameListeners.forEach(frameListener -> frameListener.getValue0().onNextFrame(frameBuffer.createGraphics()));
             Engine.guiModule.paint(frameBuffer.createGraphics());
             frame.getGraphics().drawImage(frameBuffer, 0, 0, null);
-            System.out.println(1000 / stopwatch.elapsed(TimeUnit.MILLISECONDS) + " fps");
+            Logger.log(1000 / stopwatch.elapsed(TimeUnit.MILLISECONDS) + " fps", "fps");
             stopwatch.reset();
         }, 0, 17);
-        frame.addKeyListener(Engine.keyModule);
-        frame.addMouseListener(Engine.mouseModule);
-        frame.addMouseMotionListener(Engine.mouseModule);
     }
 
     public void addFrameListener(FrameListener listener, int layer) {

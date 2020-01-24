@@ -4,7 +4,6 @@ import simple.engine.engine.gui.components.Button;
 import simple.engine.engine.gui.components.Widget;
 
 import java.awt.*;
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class WidgetPack {
