@@ -20,6 +20,10 @@ public class Logger {
     }
 
     public static void log(String s, String level) {
-        if (levels.get(level)) System.out.println(s);
+        if (level.contains(level) && levels.get(level)) System.out.println(s);
+    }
+
+    public static HashMap<String, Boolean> getLevels() {
+        return levels;
     }
 }

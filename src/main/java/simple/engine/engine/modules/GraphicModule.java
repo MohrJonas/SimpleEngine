@@ -46,7 +46,7 @@ public class GraphicModule extends Module {
             frameListeners.forEach(frameListener -> frameListener.getValue0().onNextFrame(frameBuffer.createGraphics()));
             Engine.guiModule.paint(frameBuffer.createGraphics());
             frame.getGraphics().drawImage(frameBuffer, 0, 0, null);
-            Logger.log(1000 / stopwatch.elapsed(TimeUnit.MILLISECONDS) + " fps", "fps");
+            if(stopwatch.elapsed(TimeUnit.MILLISECONDS) != 0) Logger.log(1000 / stopwatch.elapsed(TimeUnit.MILLISECONDS) + " fps", "fps");
             stopwatch.reset();
         }, 0, 17);
     }

@@ -17,9 +17,6 @@ import java.awt.event.KeyEvent;
 public class Main {
 
     public static void main(String[] args) {
-        Logger.addLevels("fps");
-        Logger.addLevels("resources");
-        Logger.disableLevel("fps");
         Engine.initialize(new GameConfig(), new ExitModule());
         WidgetPack wp = new WidgetPack(new Rectangle(0, 0, 200, 200, Color.CYAN), new Label(0, 300, "Hello World"), new ImageFrame(0, 0, Engine.storageModule.getImage("sample.png"), Color.CYAN, 5));
         Engine.graphicModule.addFrameListener(new FrameListener() {
