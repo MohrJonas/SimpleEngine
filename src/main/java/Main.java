@@ -19,11 +19,13 @@ public class Main {
     public static void main(String[] args) {
         Engine.initialize(new GameConfig(), new ExitModule());
         WidgetPack wp = new WidgetPack(new Rectangle(0, 0, 200, 200, Color.CYAN), new Label(0, 300, "Hello World"), new ImageFrame(0, 0, Engine.storageModule.getImage("sample.png"), Color.CYAN, 5));
+        Engine.storageModule.getGif("sampleGif.gif").setRepeating(true);
         Engine.graphicModule.addFrameListener(new FrameListener() {
             @Override
             public void onNextFrame(Graphics2D g) {
                 g.setColor(Color.GREEN);
                 g.fillRect(0, 0, 100, 100);
+                g.drawImage(Engine.storageModule.getGif("sampleGif.gif").next(), 0, 200, null);
             }
         }, GraphicModule.LAST_LAYER);
         Engine.guiModule.setWidgetPack(wp);
