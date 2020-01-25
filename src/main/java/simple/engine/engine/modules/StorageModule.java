@@ -1,14 +1,12 @@
 package simple.engine.engine.modules;
 
-import com.google.common.annotations.Beta;
-import com.madgag.gif.fmsware.GifDecoder;
 import org.apache.commons.io.FilenameUtils;
 import simple.engine.engine.GameConfig;
+import simple.engine.engine.graphics.Animation;
 import simple.engine.engine.loaders.GifLoader;
 import simple.engine.engine.loaders.ImageLoader;
 import simple.engine.engine.loaders.SoundLoader;
 import simple.engine.engine.util.ArrayUtils;
-import simple.engine.engine.util.Gif;
 
 import javax.sound.sampled.Clip;
 import java.awt.image.BufferedImage;
@@ -16,11 +14,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-@Beta
 public class StorageModule extends Module {
 
-    private final String imagePrefix = "images";
-    private final String soundPrefix = "sounds";
     private final ImageLoader imageLoader = new ImageLoader();
     private final SoundLoader soundLoader = new SoundLoader();
     private final GifLoader gifLoader = new GifLoader();
@@ -42,7 +37,7 @@ public class StorageModule extends Module {
         }
     }
 
-    public Gif getGif(String name) {
+    public Animation getAnimation(String name) {
         return gifLoader.get(name);
     }
 

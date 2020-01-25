@@ -11,7 +11,7 @@ public class ImageFrame extends StaticWidget {
     private final int borderWidth;
 
     public ImageFrame(int x, int y, BufferedImage image, Color borderColor, int borderWidth) {
-        super(x - borderWidth, y - borderWidth, image.getWidth() + borderWidth * 2, image.getHeight() + borderWidth * 2);
+        super(x, y, image.getWidth() + borderWidth * 2, image.getHeight() + borderWidth * 2);
         this.image = image;
         this.borderColor = borderColor;
         this.borderWidth = borderWidth;

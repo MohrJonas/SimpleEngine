@@ -1,4 +1,4 @@
-package simple.engine.engine;
+package simple.engine.engine.graphics;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

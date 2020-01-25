@@ -1,6 +1,6 @@
 package simple.engine.engine.loaders;
 
-import simple.engine.engine.ImageOptimizer;
+import simple.engine.engine.graphics.ImageOptimizer;
 import simple.engine.engine.util.ColorOut;
 import simple.engine.engine.util.Logger;
 
@@ -8,7 +8,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.stream.Stream;
 
 public class ImageLoader extends Loader<BufferedImage> {

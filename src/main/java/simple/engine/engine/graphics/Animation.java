@@ -1,17 +1,17 @@
-package simple.engine.engine.util;
+package simple.engine.engine.graphics;
 
 import com.madgag.gif.fmsware.GifDecoder;
 
 import java.awt.image.BufferedImage;
 
-public class Gif {
+public class Animation {
 
     private final BufferedImage[] frames;
     private final GifDecoder decoder;
     private int i = 0;
     private boolean repeating;
 
-    public Gif(GifDecoder decoder) {
+    public Animation(GifDecoder decoder) {
         frames = new BufferedImage[decoder.getFrameCount()];
         this.decoder = decoder;
         for (int i = 0; i < decoder.getFrameCount(); i++) {

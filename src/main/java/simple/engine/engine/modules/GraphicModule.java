@@ -5,11 +5,11 @@ import org.javatuples.Pair;
 import simple.engine.engine.Engine;
 import simple.engine.engine.GameConfig;
 import simple.engine.engine.util.Logger;
+import simple.engine.engine.util.Utils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
@@ -55,6 +55,6 @@ public class GraphicModule extends Module {
         if (frameListeners.stream().anyMatch(objects -> objects.getValue1() == layer))
             System.err.println("Warning: A layer with that ID has already been registered (ID: ".concat(layer == Integer.MIN_VALUE ? "FIRST_LAYER" : (layer == Integer.MAX_VALUE ? "LAST_LAYER" : String.valueOf(layer))).concat(")"));
         frameListeners.add(new Pair<>(listener, layer));
-        frameListeners.sort(Comparator.comparing(Pair::getValue1));
-    }
+        Utils.sortTuple(frameListeners, 2);
+        }
 }
