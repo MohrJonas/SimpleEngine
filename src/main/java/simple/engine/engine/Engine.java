@@ -1,13 +1,16 @@
 package simple.engine.engine;
 
+import simple.engine.engine.modules.Module;
 import simple.engine.engine.modules.*;
 import simple.engine.engine.util.Logger;
+import sun.reflect.Reflection;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
 public class Engine {
 
+    private static final HashMap<Class<? extends Module>, Module> modules = new HashMap<>();
     public static StorageModule storageModule;
     public static GuiModule guiModule;
     public static GraphicModule graphicModule;
@@ -17,7 +20,6 @@ public class Engine {
     public static MouseModule mouseModule;
     private static GameConfig config;
     private static boolean ready;
-    private static final HashMap<Class<? extends Module>, Module> modules = new HashMap<>();
 
     @SuppressWarnings("deprecation")
     public static void initialize(GameConfig config, Module... additionalModules) {
@@ -26,7 +28,7 @@ public class Engine {
         Logger.addLevels("resources");
         Logger.disableLevel("fps");
         timingModule = new TimingModule(config);
-        storageModule = new StorageModule(config, sun.reflect.Reflection.getCallerClass(2));
+        storageModule = new StorageModule(config, Reflection.getCallerClass(2));
         keyModule = new KeyModule(config);
         mouseModule = new MouseModule(config);
         graphicModule = new GraphicModule(config);

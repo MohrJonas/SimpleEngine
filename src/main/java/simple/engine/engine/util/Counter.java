@@ -9,17 +9,13 @@ public class Counter {
     private int current;
     private boolean finished;
 
-    public Counter() {
-        this(0, 0, 1);
-    }
-
     public Counter(int start, int end, int stepSize) {
         this.start = start;
         this.end = end;
         reversed = start > end;
         this.stepSize = reversed ? -stepSize : stepSize;
         current = start;
-        if (Math.abs(start - end) % stepSize != 0) System.err.println("The stepSize doesn't exactly fit the stepSize");
+        if (Math.abs(start - end) % stepSize != 0) System.err.println("The stepSize doesn't exactly fit the distance");
     }
 
     public boolean hasFinished() {
