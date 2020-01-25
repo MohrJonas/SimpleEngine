@@ -8,7 +8,7 @@ public class TextButton extends Button {
 
     private String text;
 
-    protected TextButton(int x, int y, String text, Runnable runnable) {
+    public TextButton(int x, int y, String text, Runnable runnable) {
         super(x, y, GuiUtils.getStringWidth(text), GuiUtils.getStringHeight(text), runnable);
         this.text = text;
     }

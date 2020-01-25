@@ -1,8 +1,11 @@
 package simple.engine.engine.modules;
 
 import org.javatuples.Pair;
+import simple.engine.engine.Engine;
 import simple.engine.engine.GameConfig;
+import simple.engine.engine.util.ColorOut;
 
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -27,6 +30,7 @@ public class MouseModule extends Module implements MouseListener, MouseMotionLis
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(e.getButton() == MouseEvent.BUTTON1) Engine.guiModule.onClick(e.getX(), e.getY());
     }
 
     @Override

@@ -13,7 +13,11 @@ public class GuiModule extends Module {
 
     public GuiModule(GameConfig config) {
         super(config);
+    }
 
+    public void onClick(int x, int y) {
+        if (widgetPack != null && active)
+            widgetPack.onClick(x, y);
     }
 
     public void setDebug(boolean debug) {
