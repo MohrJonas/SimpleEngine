@@ -22,7 +22,7 @@ public class ImageLoader extends Loader<BufferedImage> {
                 e.printStackTrace();
             }
         });
-        Logger.log(ColorOut.asString(String.format("Loaded %d images from files.", content.values().size()), ColorOut.GREEN), "resources");
+        Logger.log(ColorOut.asString(String.format("Loaded %d image(s) from files.", content.values().size()), ColorOut.GREEN), "resources");
     }
 
     @Override

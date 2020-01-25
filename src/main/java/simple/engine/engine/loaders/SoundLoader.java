@@ -24,7 +24,7 @@ public class SoundLoader extends Loader<Clip> {
                 e.printStackTrace();
             }
         });
-        ColorOut.print(System.out, String.format("Loaded %d sounds from files.", content.values().size()), ColorOut.GREEN);
+        ColorOut.print(System.out, String.format("Loaded %d sound(s) from files.", content.values().size()), ColorOut.GREEN);
     }
 
     @Override

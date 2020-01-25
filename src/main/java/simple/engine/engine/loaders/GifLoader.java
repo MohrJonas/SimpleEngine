@@ -17,7 +17,7 @@ public class GifLoader extends Loader<Gif> {
                 read(p.toString());
             }}));
         });
-        ColorOut.print(System.out, String.format("Loaded %d gifs from files.", content.values().size()), ColorOut.GREEN);
+        ColorOut.print(System.out, String.format("Loaded %d gif(s) from files.", content.values().size()), ColorOut.GREEN);
     }
 
     @Override
