@@ -1,6 +1,7 @@
 package simple.engine.engine.loaders;
 
 import simple.engine.engine.util.ColorOut;
+import simple.engine.engine.util.Logger;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
@@ -24,7 +25,7 @@ public class SoundLoader extends Loader<Clip> {
                 e.printStackTrace();
             }
         });
-        ColorOut.print(System.out, String.format("Loaded %d sound(s) from files.", content.values().size()), ColorOut.GREEN);
+        Logger.log(ColorOut.asString(String.format("Loaded %d sound(s) from files.", content.values().size()), ColorOut.GREEN), "resources");
     }
 
     @Override

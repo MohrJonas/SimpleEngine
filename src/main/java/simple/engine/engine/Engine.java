@@ -1,6 +1,5 @@
 package simple.engine.engine;
 
-import simple.engine.engine.modules.Module;
 import simple.engine.engine.modules.*;
 import simple.engine.engine.util.Logger;
 import sun.reflect.Reflection;
@@ -24,9 +23,8 @@ public class Engine {
     @SuppressWarnings("deprecation")
     public static void initialize(GameConfig config, Module... additionalModules) {
         Engine.config = config;
-        Logger.addLevels("fps");
-        Logger.addLevels("resources");
-        Logger.disableLevel("fps");
+        Logger.addLevel("fps", true);
+        Logger.addLevel("resources", true);
         timingModule = new TimingModule(config);
         storageModule = new StorageModule(config, Reflection.getCallerClass(2));
         keyModule = new KeyModule(config);

@@ -15,6 +15,12 @@ public class WidgetPack {
         for (int i = 0; i < widgets.length; i++) this.widgets.put(i, widgets[i]);
     }
 
+    public <T extends Widget> T get(int id, Class<T> t) {
+        if (!widgets.containsKey(id))
+            throw new IllegalArgumentException("Widget with ID ".concat(String.valueOf(id)).concat(" doesn't exist"));
+        return t.cast(widgets.get(id));
+    }
+
     public Widget get(int id) {
         if (!widgets.containsKey(id))
             throw new IllegalArgumentException("Widget with ID ".concat(String.valueOf(id)).concat(" doesn't exist"));

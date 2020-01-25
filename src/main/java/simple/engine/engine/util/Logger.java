@@ -1,14 +1,13 @@
 package simple.engine.engine.util;
 
-import java.util.Arrays;
 import java.util.HashMap;
 
 public class Logger {
 
     private static final HashMap<String, Boolean> levels = new HashMap<>();
 
-    public static void addLevels(String... levels) {
-        Arrays.stream(levels).forEach(s -> Logger.levels.put(s, true));
+    public static void addLevel(String level, boolean enabled) {
+        Logger.levels.put(level, enabled);
     }
 
     public static void enableLevel(String level) {

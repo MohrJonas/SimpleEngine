@@ -32,6 +32,7 @@ public class Main {
         Engine.guiModule.setActive(true);
         wp.get(0).addAnimation(Widget.MOVEMENT.VERTICAL, 400, 20);
         wp.get(1).addAnimation(Widget.MOVEMENT.HORIZONTAL, 400, 5);
+        wp.get(1, Label.class).update("Hello World!");
         Engine.timingModule.scheduleRepeatedly(() -> ((Label) wp.get(1)).update(LoremIpsum.getInstance().getWords(1, 10)), 0, 1000);
         Engine.keyModule.addKeyListener(KeyEvent.VK_ESCAPE, () -> ((ExitModule) Engine.get(ExitModule.class)).exit());
         Engine.mouseModule.addMouseMoveListener(() -> System.out.print("."));
