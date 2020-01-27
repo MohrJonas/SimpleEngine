@@ -1,6 +1,7 @@
 package simple.engine;
 
 import simple.engine.modules.*;
+import simple.engine.util.GameConfig;
 import simple.engine.util.Logger;
 import sun.reflect.Reflection;
 

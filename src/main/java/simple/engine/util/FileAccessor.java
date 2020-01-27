@@ -1,4 +1,4 @@
-package simple.engine;
+package simple.engine.util;
 
 import java.io.*;
 
@@ -22,6 +22,7 @@ public class FileAccessor<T extends Serializable> {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public T load() {
         T out = null;
         try {

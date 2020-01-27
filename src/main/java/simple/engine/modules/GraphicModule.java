@@ -3,7 +3,7 @@ package simple.engine.modules;
 import com.google.common.base.Stopwatch;
 import org.javatuples.Pair;
 import simple.engine.Engine;
-import simple.engine.GameConfig;
+import simple.engine.util.GameConfig;
 import simple.engine.util.Logger;
 import simple.engine.util.Utils;
 
@@ -48,7 +48,7 @@ public class GraphicModule extends Module {
             frame.getGraphics().drawImage(frameBuffer, 0, 0, null);
             if(stopwatch.elapsed(TimeUnit.MILLISECONDS) != 0) Logger.log(1000 / stopwatch.elapsed(TimeUnit.MILLISECONDS) + " fps", "fps");
             stopwatch.reset();
-        }, 0, 17);
+        }, 0, 1000 / config.getFps());
     }
 
     public void addFrameListener(FrameListener listener, int layer) {

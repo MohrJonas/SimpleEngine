@@ -1,6 +1,4 @@
-package simple.engine;
-
-import java.awt.image.BufferedImage;
+package simple.engine.tiles;
 
 public class Tile {
 

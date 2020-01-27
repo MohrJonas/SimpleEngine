@@ -1,4 +1,4 @@
-package simple.engine;
+package simple.engine.util;
 
 public class GameConfig {
 

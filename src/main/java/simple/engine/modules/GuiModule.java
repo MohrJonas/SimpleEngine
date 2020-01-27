@@ -1,6 +1,6 @@
 package simple.engine.modules;
 
-import simple.engine.GameConfig;
+import simple.engine.util.GameConfig;
 import simple.engine.gui.WidgetPack;
 
 import java.awt.*;

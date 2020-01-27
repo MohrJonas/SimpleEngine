@@ -1,4 +1,4 @@
-package simple.engine;
+package simple.engine.tiles;
 
 import java.io.Serializable;
 

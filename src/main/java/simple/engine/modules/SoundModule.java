@@ -1,8 +1,10 @@
 package simple.engine.modules;
 
-import simple.engine.GameConfig;
+import simple.engine.util.GameConfig;
 
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.Control;
+import javax.sound.sampled.FloatControl;
 
 public final class SoundModule extends Module {
 
@@ -14,6 +16,7 @@ public final class SoundModule extends Module {
     }
 
     public synchronized void play(Clip clip) {
+        ((FloatControl) clip.getControl(FloatControl.Type.VOLUME)).setValue(config.getDefaultVolume());
         clip.start();
     }
 

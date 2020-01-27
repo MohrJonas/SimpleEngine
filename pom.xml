@@ -6,7 +6,7 @@
 
     <groupId>org.nastygamer</groupId>
     <artifactId>SimpleEngine</artifactId>
-    <version>1.0</version>
+    <version>1.2</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -84,6 +84,12 @@
             <groupId>com.madgag</groupId>
             <artifactId>animated-gif-lib</artifactId>
             <version>1.4</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>4.4</version>
         </dependency>
     </dependencies>
 </project>

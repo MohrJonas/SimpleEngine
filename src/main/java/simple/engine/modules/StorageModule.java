@@ -1,7 +1,7 @@
 package simple.engine.modules;
 
 import org.apache.commons.io.FilenameUtils;
-import simple.engine.GameConfig;
+import simple.engine.util.GameConfig;
 import simple.engine.graphics.Animation;
 import simple.engine.loaders.GifLoader;
 import simple.engine.loaders.ImageLoader;
@@ -19,9 +19,15 @@ public class StorageModule extends Module {
     private final ImageLoader imageLoader = new ImageLoader();
     private final SoundLoader soundLoader = new SoundLoader();
     private final GifLoader gifLoader = new GifLoader();
+    private final Class<?> clazz;
+
+    public File getRelativeFile(String path) {
+        return new File(clazz.getProtectionDomain().getCodeSource().getLocation().getPath().concat(path));
+    }
 
     public StorageModule(GameConfig config, Class<?> clazz) {
         super(config);
+        this.clazz = clazz;
         try {
             String[] imageExtensions = new String[]{"png", "jpg", "jpeg", "bmp"};
             String[] soundExtensions = new String[]{"wav"};

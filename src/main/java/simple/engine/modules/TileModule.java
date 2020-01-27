@@ -1,7 +1,7 @@
 package simple.engine.modules;
 
-import simple.engine.GameConfig;
-import simple.engine.TileMap;
+import simple.engine.util.GameConfig;
+import simple.engine.tiles.TileMap;
 
 public class TileModule extends Module {
 

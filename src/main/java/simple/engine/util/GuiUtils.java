@@ -68,19 +68,6 @@ public class GuiUtils {
     }
 
     @SafeVarargs
-    public static <T extends Widget> T[] alignHorizontally(int padding, T... widgets) {
-        AtomicInteger currentX = new AtomicInteger(widgets[0].rectangle.x + widgets[0].rectangle.width + padding);
-        System.out.println(currentX.get());
-        final int y = widgets[0].rectangle.y;
-        for (int i = 1; i < widgets.length; i++) {
-            widgets[i].rectangle.x = currentX.get();
-            widgets[i].rectangle.y = y;
-            currentX.addAndGet(widgets[i].rectangle.width + padding);
-        }
-        return widgets;
-    }
-
-    @SafeVarargs
     public static <T extends Widget> T[] alignVertically(int padding, T... widgets) {
         AtomicInteger currentY = new AtomicInteger(widgets[0].rectangle.y + widgets[0].rectangle.width + padding);
         final int x = widgets[0].rectangle.x;
