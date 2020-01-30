@@ -11,29 +11,29 @@ import java.util.LinkedList;
 
 public class MouseModule extends Module implements MouseListener, MouseMotionListener {
 
-    private final LinkedList<Pair<Integer, Runnable>> mouseClicks = new LinkedList<>();
-    private final LinkedList<Runnable> mouseMoves = new LinkedList<>();
+    private final LinkedList<Pair<Integer, MouseClickListener>> mouseClicks = new LinkedList<>();
+    private final LinkedList<MouseMoveListener> mouseMoves = new LinkedList<>();
 
     public MouseModule(GameConfig config) {
         super(config);
     }
 
-    public void addMouseClickListener(int keycode, Runnable runnable) {
-        mouseClicks.add(new Pair<>(keycode, runnable));
+    public void addMouseClickListener(int keycode, MouseClickListener clickListener) {
+        mouseClicks.add(new Pair<>(keycode, clickListener));
     }
 
-    public void addMouseMoveListener(Runnable runnable) {
-        mouseMoves.add(runnable);
+    public void addMouseMoveListener(MouseMoveListener moveListener) {
+        mouseMoves.add(moveListener);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getButton() == MouseEvent.BUTTON1) Engine.guiModule.onClick(e.getX(), e.getY());
+        if (e.getButton() == MouseEvent.BUTTON1) Engine.guiModule.onClick(e.getX(), e.getY());
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        mouseClicks.stream().filter(p -> p.getValue0() == e.getButton()).findFirst().ifPresent(p -> p.getValue1().run());
+        mouseClicks.stream().filter(p -> p.getValue0() == e.getButton()).findFirst().ifPresent(p -> p.getValue1().onClick(e));
     }
 
     @Override
@@ -58,6 +58,6 @@ public class MouseModule extends Module implements MouseListener, MouseMotionLis
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        mouseMoves.forEach(Runnable::run);
+        mouseMoves.forEach(moveListener -> moveListener.onMouseMove(e.getPoint()));
     }
 }
