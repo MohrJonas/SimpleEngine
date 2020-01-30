@@ -8,6 +8,7 @@ public class Animation {
 
     private final BufferedImage[] frames;
     private final GifDecoder decoder;
+    private final int delay;
     private int i = 0;
     private boolean repeating;
 
@@ -17,14 +18,21 @@ public class Animation {
         for (int i = 0; i < decoder.getFrameCount(); i++) {
             frames[i] = decoder.getFrame(i);
         }
+        delay = 0;
+    }
+
+    public Animation(BufferedImage[] image, int delay) {
+        frames = image;
+        decoder = null;
+        this.delay = delay;
     }
 
     public int getDelay(int i) {
-        return decoder.getDelay(i);
+        return decoder != null ? decoder.getDelay(i) : delay;
     }
 
     public int getDelay() {
-        return decoder.getDelay(0);
+        return decoder != null ? decoder.getDelay(0) : delay;
     }
 
     public void setRepeating(boolean repeating) {
