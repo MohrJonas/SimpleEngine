@@ -1,5 +1,9 @@
 package simple.engine.tiles;
 
+import simple.engine.Engine;
+
+import java.awt.image.BufferedImage;
+
 public class Tile {
 
     private final String image;
@@ -16,6 +20,10 @@ public class Tile {
         this.name = name;
         this.breakLevel = breakLevel;
         this.breakTime = breakTime;
+    }
+
+    public BufferedImage get() {
+        return Engine.storageModule.getImage(image);
     }
 
 }
