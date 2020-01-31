@@ -39,6 +39,7 @@ public class GraphicModule extends Module {
         frame.addKeyListener(Engine.keyModule);
         frame.addMouseListener(Engine.mouseModule);
         frame.addMouseMotionListener(Engine.mouseModule);
+        frame.addMouseWheelListener(Engine.mouseModule);
         frame.setVisible(true);
         Engine.timingModule.scheduleRepeatedly(() -> {
             stopwatch.start();
