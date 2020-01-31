@@ -55,6 +55,6 @@ public class GraphicModule extends Module {
         if (frameListeners.stream().anyMatch(objects -> objects.getValue1() == layer))
             System.err.println("Warning: A layer with that ID has already been registered (ID: ".concat(layer == Integer.MIN_VALUE ? "FIRST_LAYER" : (layer == Integer.MAX_VALUE ? "LAST_LAYER" : String.valueOf(layer))).concat(")"));
         frameListeners.add(new Pair<>(listener, layer));
-        Utils.sortTuple(frameListeners, 2);
+        Utils.sortTuple(frameListeners, 1);
         }
 }
