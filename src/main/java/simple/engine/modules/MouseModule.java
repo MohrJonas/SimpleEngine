@@ -4,18 +4,23 @@ import org.javatuples.Pair;
 import simple.engine.Engine;
 import simple.engine.util.GameConfig;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
+import java.awt.event.*;
 import java.util.LinkedList;
 
-public class MouseModule extends Module implements MouseListener, MouseMotionListener {
+public class MouseModule extends Module implements MouseListener, MouseMotionListener, MouseWheelListener {
 
     private final LinkedList<Pair<Integer, MouseClickListener>> mouseClicks = new LinkedList<>();
     private final LinkedList<MouseMoveListener> mouseMoves = new LinkedList<>();
+    private final LinkedList<simple.engine.modules.MouseWheelListener> wheelListeners = new LinkedList<>();
+
 
     public MouseModule(GameConfig config) {
         super(config);
+    }
+
+    public void addMouseWheelListener(simple.engine.modules.MouseWheelListener listener) {
+        wheelListeners.add(listener);
     }
 
     public void addMouseClickListener(int keycode, MouseClickListener clickListener) {
@@ -59,5 +64,10 @@ public class MouseModule extends Module implements MouseListener, MouseMotionLis
     @Override
     public void mouseMoved(MouseEvent e) {
         mouseMoves.forEach(moveListener -> moveListener.onMouseMove(e.getPoint()));
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        wheelListeners.forEach(listener -> listener.onMouseScroll(e.getUnitsToScroll()));
     }
 }
