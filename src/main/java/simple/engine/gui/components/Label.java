@@ -30,7 +30,10 @@ public class Label extends DynamicWidget<String> {
 
     @Override
     public void paint(Graphics2D g) {
-        if (font != null) g.setFont(font);
-        g.drawString(text, rectangle.x, rectangle.y + GuiUtils.getStringHeight(text));
+        if (font != null) {
+            g.setFont(font);
+            g.drawString(text, rectangle.x, rectangle.y + GuiUtils.getStringHeight(text, font));
+        } else
+            g.drawString(text, rectangle.x, rectangle.y + GuiUtils.getStringHeight(text));
     }
 }
