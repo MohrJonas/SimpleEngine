@@ -20,8 +20,8 @@ public class TileMap {
         return tiles[y][x];
     }
 
-    public void setTile(Tile tile, int width, int height) {
-        tiles[height][width] = tile;
+    public void setTile(Tile tile, int x, int y) {
+        tiles[y][x] = tile;
     }
 
     public Stream<Tile[]> stream() {
