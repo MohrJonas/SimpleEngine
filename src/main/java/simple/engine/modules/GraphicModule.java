@@ -23,10 +23,11 @@ public class GraphicModule extends Module {
     private final Stopwatch stopwatch = Stopwatch.createUnstarted();
     private final LinkedList<Pair<FrameListener, Integer>> frameListeners = new LinkedList<>();
     private final BufferedImage frameBuffer;
+    private JFrame frame;
 
     public GraphicModule(GameConfig config) {
         super(config);
-        JFrame frame = new JFrame();
+        frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setUndecorated(true);
         if (config.isFullscreen()) {
@@ -57,6 +58,15 @@ public class GraphicModule extends Module {
                 Logger.log(1000 / stopwatch.elapsed(TimeUnit.MILLISECONDS) + " fps", "fps");
             stopwatch.reset();
         }, 0, 1000 / config.getFps());
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(JFrame frame) {
+        if (frame != null)
+            this.frame = frame;
     }
 
     public void addFrameListener(FrameListener listener, int layer) {
