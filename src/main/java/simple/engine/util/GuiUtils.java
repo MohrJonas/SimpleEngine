@@ -100,4 +100,12 @@ public class GuiUtils {
         });
         return widgets;
     }
+
+    public static int getStringWidth(String text, Font font) {
+        return (int) (font.getStringBounds(text, RENDER_CONTEXT).getWidth());
+    }
+
+    public static int getStringHeight(String text, Font font) {
+        return (int) (font.getStringBounds(text, RENDER_CONTEXT).getHeight());
+    }
 }
