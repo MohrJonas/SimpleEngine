@@ -37,8 +37,8 @@ public class Engine {
         ready = true;
     }
 
-    public static Module get(Class<? extends Module> c) {
-        return modules.get(c);
+    public static <T extends Module> T get(Class<T> c) {
+        return c.cast(modules.get(c));
     }
 
     public static GameConfig getConfig() {
