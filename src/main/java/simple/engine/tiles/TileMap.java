@@ -20,8 +20,8 @@ public class TileMap {
         return tiles[y][x];
     }
 
-    public void setTile(Tile tile, int x, int y) {
-        tiles[y][x] = tile;
+    public void setTile(Tile tile, int width, int height) {
+        tiles[height][width] = tile;
     }
 
     public Stream<Tile[]> stream() {
@@ -36,6 +36,16 @@ public class TileMap {
             }
         }
         return tiles;
+    }
+
+    public CollisionMap createCollisionMap(int tileWidth, int tileHeight) {
+        CollisionMap map = new CollisionMap();
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (tiles[x][y].isPassable()) map.addCollision(x * tileWidth, y * tileHeight, tileWidth, tileHeight);
+            }
+        }
+        return map;
     }
 
 }
