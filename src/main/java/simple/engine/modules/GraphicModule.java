@@ -22,8 +22,14 @@ public class GraphicModule extends Module {
     public static final int LAST_LAYER = Integer.MAX_VALUE;
     private final Stopwatch stopwatch = Stopwatch.createUnstarted();
     private final LinkedList<Pair<FrameListener, Integer>> frameListeners = new LinkedList<>();
-    private final BufferedImage frameBuffer;
+    private BufferedImage frameBuffer;
     private JFrame frame;
+
+    public void setSize(int width, int height) {
+        frame.setSize(width, height);
+        frame.setLocationRelativeTo(null);
+        frameBuffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+    }
 
     public GraphicModule(GameConfig config) {
         super(config);
