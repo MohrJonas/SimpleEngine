@@ -33,8 +33,12 @@ public class Engine {
         graphicModule = new GraphicModule(config);
         guiModule = new GuiModule(config);
         soundModule = new SoundModule(config);
-        Arrays.stream(additionalModules).forEach(module -> modules.put(module.getClass(), module));
         ready = true;
+    }
+
+    public static void addModules(Module... modules) {
+        if (!isReady()) throw new IllegalArgumentException("Engine hasn't yet initialized");
+        Arrays.stream(modules).forEach(module -> Engine.modules.put(module.getClass(), module));
     }
 
     public static <T extends Module> T get(Class<T> c) {
