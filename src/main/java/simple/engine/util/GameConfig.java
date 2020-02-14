@@ -1,6 +1,8 @@
 package simple.engine.util;
 
-public class GameConfig {
+import java.io.Serializable;
+
+public class GameConfig implements Serializable {
 
     private int fps = 60;
     private int width = 512;
