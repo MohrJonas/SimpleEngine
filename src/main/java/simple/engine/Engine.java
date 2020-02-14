@@ -37,7 +37,7 @@ public class Engine {
     }
 
     public static void addModules(Module... modules) {
-        if (!isReady()) throw new IllegalArgumentException("Engine hasn't yet initialized");
+        if (!isReady()) throw new IllegalArgumentException("Engine hasn't yet been initialized");
         Arrays.stream(modules).forEach(module -> Engine.modules.put(module.getClass(), module));
     }
 
